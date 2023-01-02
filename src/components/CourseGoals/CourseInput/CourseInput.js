@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import Button from "../../UI/Button/Button";
-import styles from "./CourseInput.module.css";
+import React, { useState } from 'react';
+
+import Button from '../../UI/Button/Button';
+import styles from './CourseInput.module.css';
 
 const CourseInput = (props) => {
-  const [enteredValue, setEnteredValue] = useState("");
+  const [enteredValue, setEnteredValue] = useState('');
   const [isValid, setIsValid] = useState(true);
 
   const goalInputChangeHandler = (event) => {
@@ -16,18 +17,16 @@ const CourseInput = (props) => {
   const formSubmitHandler = (event) => {
     event.preventDefault();
     if (enteredValue.trim().length === 0) {
-      //trim() 시작이나 끝부분에 과도하게 쓰인 공백을 제거해주는 메소드
       setIsValid(false);
       return;
     }
-
     props.onAddGoal(enteredValue);
   };
 
   return (
     <form onSubmit={formSubmitHandler}>
       <div
-        className={`${styles["form-control"]} ${!isValid && styles.inValid}`}
+        className={`${styles['form-control']} ${!isValid && styles.invalid}`}
       >
         <label>Course Goal</label>
         <input type="text" onChange={goalInputChangeHandler} />
