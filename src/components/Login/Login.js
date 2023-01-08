@@ -49,10 +49,13 @@ const Login = (props) => {
     };
   }, []);
 
+  const { isValid: emailIsValid } = emailState; // Destructuring, isValid에서 state를 꺼낼 수 있다. 전체 개체 대신 특정 속성을 종속성으로 전달함
+  const { isValid: passwordIsValid } = passwordState;
+
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log("Checking form validity!");
-      setFormIsValid(emailState.isValid && passwordState.isValid);
+      setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
     return () => {
@@ -60,7 +63,7 @@ const Login = (props) => {
       console.log("CLEANUP");
       clearTimeout(identifier);
     };
-  }, [emailState, passwordState]);
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: "USER_INPUT", val: event.target.value }); //액션에 전달 (주로 객체로)
