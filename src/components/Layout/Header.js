@@ -3,12 +3,14 @@ import React, { Fragment } from "react";
 import mealsImage from "../../assets/meals.jpg"; //로컬에서 불러올때는 이렇게 import 사용하기
 import classes from "./Header.module.css";
 
+import HeaderCartButton from "./HeaderCartButton";
+
 const Header = (props) => {
   return (
     <Fragment>
       <header className={classes.header}>
         <h1>ReactMeal</h1>
-        <button>Cart</button>
+        <HeaderCartButton />
       </header>
       ;
       <div className={classes["main-image"]}>
